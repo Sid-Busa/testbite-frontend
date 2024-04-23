@@ -19,6 +19,7 @@ const Home = () => {
           ))}
         </Grid>
       </HomeContainer>
+
       <Aboutus />
       <CuratedCollections />
       <Recipes />
