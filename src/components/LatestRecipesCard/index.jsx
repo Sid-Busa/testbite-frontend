@@ -12,26 +12,25 @@ import {
 } from "./components";
 import Avatar from "@mui/material/Avatar";
 
-import Pumpkin from "../../assets/images/pumpkin-marshmallow.jpeg";
-// pumpkin-marshmallow.jpeg
-const LatestRecipesCard = () => {
+const LatestRecipesCard = ({
+  title,
+  image,
+  description,
+  creatorName,
+  handleToClickItem,
+}) => {
   return (
-    <LatestRecipesCardContainer>
-      <ImageContainer src={Pumpkin} alt="Pumpkin" />
+    <LatestRecipesCardContainer onClick={handleToClickItem}>
+      <ImageContainer src={image} alt={title} />
       <DescriptionSection>
-        <DescriptionTitle> Pumpkin marshmallow pie </DescriptionTitle>
-        <Description>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.{" "}
-        </Description>
+        <DescriptionTitle> {title} </DescriptionTitle>
+        <Description>{description}</Description>
       </DescriptionSection>
 
       <CreatorContainer>
         <CreatorAvatarContainer>
           <Avatar>D</Avatar>
-          <CreatorName> John Doe </CreatorName>
+          <CreatorName> {creatorName} </CreatorName>
         </CreatorAvatarContainer>
         <CreatorDay>yesterday</CreatorDay>
       </CreatorContainer>

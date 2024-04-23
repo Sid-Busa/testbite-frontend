@@ -12,9 +12,11 @@ import {
 import { Logo } from "../Header/components";
 import { footerItems } from "../../constants";
 import { useNavigate } from "react-router-dom";
+import { getFromLocalStorage } from "../../utills/storage";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const token = getFromLocalStorage("token");
 
   const handleNavigate = (path) => {
     if (path) {
@@ -28,7 +30,7 @@ const Footer = () => {
           <Logo alt="Test Bites" src={Tastebites} />
         </Box>
         <NavContainer>
-          {footerItems.map(({ title, path }) => (
+          {footerItems(token).map(({ title, path }) => (
             <NavItem key={title} onClick={() => handleNavigate(path)}>
               {title}
             </NavItem>

@@ -13,8 +13,9 @@ const handleRedirectLogin = () => {
 const requestHandler = async (request) => {
   const token = localStorage.getItem("token");
 
-  request.headers["Authorization "] = ` Bearer ${token.access_token}`;
-
+  if (token) {
+    request.headers["authorization"] = ` Bearer ${token}`;
+  }
   return request;
 };
 

@@ -18,18 +18,52 @@ import Burger from "../../assets/images/burger.jpeg";
 import TextInput from "../../components/Form/TextInput";
 import { contactSchema } from "./schema";
 import NumberField from "../../components/Form/NumberField";
+import { useDispatch } from "react-redux";
+import { endLoading, startLoading } from "../../store/reducer/loader";
+import { toast } from "react-toastify";
+import API from "../../API";
 
 const Contactus = () => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(contactSchema),
   });
 
+  const handleResetForm = () => {
+    reset({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+  };
+
   const onSubmit = async (data) => {
-    console.log("data", data);
+    try {
+      dispatch(startLoading());
+      const payload = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+      };
+      const registerUser = await API.post("contactus/add-feedback", payload);
+      if (!registerUser?.success) {
+        toast.error(registerUser?.message || registerUser?.error);
+        return;
+      }
+      toast.success("Feedback has been submitted");
+      handleResetForm();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(endLoading());
+    }
   };
 
   return (

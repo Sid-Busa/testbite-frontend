@@ -1,13 +1,11 @@
 import React from "react";
 import { FastRecipesCardContainer, ImageContainer, Title } from "./components";
 
-import Pumpkin from "../../assets/images/pumpkin-marshmallow.jpeg";
-// pumpkin-marshmallow.jpeg
-const FastRecipesCard = () => {
+const FastRecipesCard = ({ image, title, handleToClickItem }) => {
   return (
-    <FastRecipesCardContainer>
-      <ImageContainer src={Pumpkin} alt="Pumpkin" />
-      <Title> Pumpkin marshmallow pie </Title>
+    <FastRecipesCardContainer onClick={handleToClickItem}>
+      <ImageContainer src={image} alt="Pumpkin" />
+      <Title> {title} </Title>
     </FastRecipesCardContainer>
   );
 };

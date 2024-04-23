@@ -3,6 +3,7 @@ import { Box, Typography, styled } from "@mui/material";
 export const FoodItemContainer = styled(Box)(({ theme }) => ({
   padding: "0% 8%",
   marginBottom: 40,
+  marginTop: 40,
 }));
 
 export const ImageContainer = styled("img")(({ theme }) => ({

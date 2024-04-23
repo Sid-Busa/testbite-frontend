@@ -53,7 +53,7 @@ const Header = () => {
             <MenuIcon />
           </HamburgunIcon>
           <NavContainer>
-            {navItems.map(({ title, isButton, path }) =>
+            {navItems(token).map(({ title, isButton, path }) =>
               isButton ? (
                 <NavButton key={title} onClick={() => handleNavigate(path)}>
                   {title}
@@ -90,7 +90,7 @@ const Header = () => {
               <CloseIcon onClick={handleDrawerToggle} />
             </CustomCloseIconContainer>
             <List>
-              {navItems.map(({ title, path }) => (
+              {navItems(token).map(({ title, path }) => (
                 <ListItem key={title} disablePadding>
                   <ListItemButton onClick={() => handleNavigate(path, true)}>
                     <ListItemText primary={title} />

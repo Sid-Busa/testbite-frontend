@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import {
   BoldText,
   ForgetPasswordText,
@@ -13,11 +15,16 @@ import {
   SubmitButton,
   Title,
 } from "./component";
-
 import TextInput from "../../components/Form/TextInput";
 import { loginSchema } from "./schema";
+import { endLoading, startLoading } from "../../store/reducer/loader";
+import API from "../../API";
+import { saveJsonToLocalStorage } from "../../utills/storage";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setIsRegister }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -27,7 +34,26 @@ const Login = ({ setIsRegister }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log("data", data);
+    try {
+      dispatch(startLoading());
+      const payload = {
+        email: data.email,
+        password: data.password,
+      };
+      const loginUser = await API.post("user/login", payload);
+      if (!loginUser?.success) {
+        toast.error(loginUser?.message || loginUser?.error);
+        return;
+      }
+
+      saveJsonToLocalStorage("token", loginUser.sessionToken);
+      saveJsonToLocalStorage("user", loginUser.user);
+      navigate("/home");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(endLoading());
+    }
   };
 
   return (

@@ -1,19 +1,23 @@
-export const navItems = [
-  {
-    title: "Home",
-    isButton: false,
-    path: "/",
-  },
-  {
-    title: "About Us",
-    isButton: false,
-    path: "/about",
-  },
-  {
-    title: "Contact",
-    isButton: false,
-    path: "/contact-us",
-  },
+export const navItems = (isValidUser) => [
+  ...(isValidUser
+    ? [
+        {
+          title: "Home",
+          isButton: false,
+          path: "/home",
+        },
+        {
+          title: "About Us",
+          isButton: false,
+          path: "/about",
+        },
+        {
+          title: "Contact",
+          isButton: false,
+          path: "/contact-us",
+        },
+      ]
+    : []),
   {
     title: "Login/Register",
     isButton: true,
@@ -21,25 +25,28 @@ export const navItems = [
   },
 ];
 
-export const footerItems = [
-  {
-    title: "Home",
-    isButton: false,
-    path: "/",
-  },
-  {
-    title: "About Us",
-    isButton: false,
-    path: "/about",
-  },
-  {
-    title: "Contact",
-    isButton: false,
-    path: "/contact-us",
-  },
-  {
-    title: "Article",
-    isButton: false,
-    // path: "/contact-us",
-  },
+export const footerItems = (isValidUser) => [
+  ...(isValidUser
+    ? [
+        {
+          title: "Home",
+          isButton: false,
+          path: "/home",
+        },
+        {
+          title: "About Us",
+          isButton: false,
+          path: "/about",
+        },
+        {
+          title: "Contact",
+          isButton: false,
+          path: "/contact-us",
+        },
+        {
+          title: "Article",
+          isButton: false,
+        },
+      ]
+    : []),
 ];

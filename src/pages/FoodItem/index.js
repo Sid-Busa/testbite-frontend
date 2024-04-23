@@ -13,36 +13,36 @@ import {
   SubTitle,
   Title,
 } from "./component";
-import PumpkinMarshmallow from "../../assets/images/pumpkin-marshmallow.jpeg";
+import { useLocation } from "react-router-dom";
 
 const FoodItem = () => {
+  const { state } = useLocation();
+
   return (
     <FoodItemContainer>
-      <ImageContainer src={PumpkinMarshmallow} />
-      <Title> Pumpkin marshmallow pie </Title>
+      <ImageContainer src={state.image} />
+      <Title> {state.name} </Title>
 
       <RecipesInfo>
         <RecipesTitle> Recipes </RecipesTitle>
-        <Info> Here's a simple recipe for Pumpkin Marshmallow Pie: </Info>
+        <Info> Here's a simple recipe for {state.name}: </Info>
         <SubTitle>Ingredients :</SubTitle>
 
         <List>
-          <ListItem> Single-line item</ListItem>
-          <ListItem> Single-line item</ListItem>
-          <ListItem> Single-line item</ListItem>
+          {state.ingredients.map((ingredient) => (
+            <ListItem> {ingredient}</ListItem>
+          ))}
         </List>
 
         <SubTitle>Instructions :</SubTitle>
 
         <NumberList>
-          <NumberListItem> Single-line item</NumberListItem>
-          <NumberListItem> Single-line item</NumberListItem>
-          <NumberListItem> Single-line item</NumberListItem>
+          {state.instructions.map((instruction) => (
+            <NumberListItem> {instruction}</NumberListItem>
+          ))}
         </NumberList>
 
-        <HappyMessage>
-          Enjoy your delicious Pumpkin Marshmallow Pie!
-        </HappyMessage>
+        <HappyMessage>Enjoy your delicious {state.name}!</HappyMessage>
       </RecipesInfo>
     </FoodItemContainer>
   );

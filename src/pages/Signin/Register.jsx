@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -15,8 +16,12 @@ import {
 import TextInput from "../../components/Form/TextInput";
 import { registerSchema } from "./schema";
 import NumberField from "../../components/Form/NumberField";
+import API from "../../API";
+import { useDispatch } from "react-redux";
+import { endLoading, startLoading } from "../../store/reducer/loader";
 
 const Register = ({ setIsRegister }) => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
@@ -26,7 +31,26 @@ const Register = ({ setIsRegister }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log("data", data);
+    try {
+      dispatch(startLoading());
+      const payload = {
+        email: data.email,
+        phone: data.phone,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      };
+      const registerUser = await API.post("user/register", payload);
+      if (!registerUser?.success) {
+        toast.error(registerUser?.message || registerUser?.error);
+        return;
+      }
+      toast.success("User register successfully");
+      setIsRegister(false);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(endLoading());
+    }
   };
 
   return (

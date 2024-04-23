@@ -64,9 +64,9 @@ const NumberField = ({
             input: { textAlign, padding, height: "1.4375em" },
             textarea: { textAlign },
           }}
-          inputProps={{ minlength: min, maxlength: max, min, max }}
+          inputProps={{ minLength: min, maxlength: max, min, max }}
           InputProps={{
-            inputProps: { minlength: min, maxlength: max, min, max },
+            inputProps: { minLength: min, maxlength: max, min, max },
           }}
           {...props}
         />
