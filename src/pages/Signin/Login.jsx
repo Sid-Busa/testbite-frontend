@@ -87,7 +87,7 @@ const Login = ({ setIsRegister }) => {
         <FormInputContainer>
           <TextInput
             name="password"
-            type="text"
+            type="password"
             label={"Password *"}
             defaultValue=""
             variant="standard"

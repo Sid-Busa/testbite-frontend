@@ -103,7 +103,7 @@ const Register = ({ setIsRegister }) => {
         <FormInputContainer>
           <TextInput
             name="password"
-            type="text"
+            type="password"
             label={"Password *"}
             defaultValue=""
             variant="standard"
@@ -123,7 +123,7 @@ const Register = ({ setIsRegister }) => {
         <FormInputContainer>
           <TextInput
             name="confirmPassword"
-            type="text"
+            type="password"
             label={"re-enter Password *"}
             defaultValue=""
             variant="standard"
