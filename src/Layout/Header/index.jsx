@@ -42,12 +42,20 @@ const Header = () => {
     }
   };
 
+  const handleToMoveHome = () => {
+    navigate("/home");
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CustomAppBar position="static" component="nav">
         <CustomToolbar>
           <Box sx={{ flexGrow: 2 }}>
-            <Logo alt="Test Bites" src={Tastebites} />
+            <Logo
+              alt="Test Bites"
+              src={Tastebites}
+              onClick={handleToMoveHome}
+            />
           </Box>
           <HamburgunIcon
             color="inherit"

@@ -23,11 +23,16 @@ const Footer = () => {
       navigate(path);
     }
   };
+
+  const handleToMoveHome = () => {
+    navigate("/home");
+  };
+
   return (
     <FooterContainer>
       <FooterItemContainer>
         <Box sx={{ flexGrow: 2 }}>
-          <Logo alt="Test Bites" src={Tastebites} />
+          <Logo alt="Test Bites" src={Tastebites} onClick={handleToMoveHome} />
         </Box>
         <NavContainer>
           {footerItems(token).map(({ title, path }) => (

@@ -21,6 +21,7 @@ export const CustomToolbar = styled(Toolbar)(() => ({
 
 export const Logo = styled("img")(({ theme }) => ({
   width: 150,
+  cursor: "pointer",
   [theme.breakpoints.down(768)]: {
     width: 100,
   },
