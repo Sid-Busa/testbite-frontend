@@ -3,10 +3,7 @@ import { CuratedcollectionsContainer, Title } from "./component";
 import ReceiptCard from "../../components/ReceiptCard";
 import { Grid } from "@mui/material";
 
-const Curatedcollections = ({
-  data,
-  hanldeToMoveItemDetail = { hanldeToMoveItemDetail },
-}) => {
+const Curatedcollections = ({ data, hanldeToMoveItemDetail }) => {
   const handleToClickItem = (item) => {
     hanldeToMoveItemDetail(item);
   };
