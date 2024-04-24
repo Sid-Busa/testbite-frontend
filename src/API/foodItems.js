@@ -5,3 +5,7 @@ export const getFoodItemByTypes = async (type) => {
     type,
   });
 };
+
+export const updateFoodRatting = async (updateRatting) => {
+  return await API.post("food/updateRatting", updateRatting);
+};

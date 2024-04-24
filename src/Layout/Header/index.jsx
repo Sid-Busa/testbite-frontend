@@ -17,7 +17,7 @@ import Tastebites from "../../assets/images/Tastebites.png";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { navItems } from "../../constants";
 import { useNavigate } from "react-router";
-import { getFromLocalStorage } from "../../utills/storage";
+import { clearFromStorage, getFromLocalStorage } from "../../utills/storage";
 const drawerWidth = 240;
 
 const Header = () => {
@@ -29,11 +29,17 @@ const Header = () => {
     setMobileDrawer((prevState) => !prevState);
   };
 
-  const handleNavigate = (path, isMobile) => {
+  const handleNavigate = (path, isMobile, isLogout) => {
     if (isMobile) {
       handleDrawerToggle();
     }
-    navigate(path);
+    if (isLogout) {
+      clearFromStorage();
+      navigate("/");
+    }
+    if (path) {
+      navigate(path);
+    }
   };
 
   return (
@@ -53,13 +59,19 @@ const Header = () => {
             <MenuIcon />
           </HamburgunIcon>
           <NavContainer>
-            {navItems(token).map(({ title, isButton, path }) =>
+            {navItems(token).map(({ title, isButton, path, isLogout }) =>
               isButton ? (
-                <NavButton key={title} onClick={() => handleNavigate(path)}>
+                <NavButton
+                  key={title}
+                  onClick={() => handleNavigate(path, false, isLogout)}
+                >
                   {title}
                 </NavButton>
               ) : (
-                <NavItem key={title} onClick={() => handleNavigate(path)}>
+                <NavItem
+                  key={title}
+                  onClick={() => handleNavigate(path, false, isLogout)}
+                >
                   {title}
                 </NavItem>
               )
@@ -90,9 +102,11 @@ const Header = () => {
               <CloseIcon onClick={handleDrawerToggle} />
             </CustomCloseIconContainer>
             <List>
-              {navItems(token).map(({ title, path }) => (
+              {navItems(token).map(({ title, path, isLogout }) => (
                 <ListItem key={title} disablePadding>
-                  <ListItemButton onClick={() => handleNavigate(path, true)}>
+                  <ListItemButton
+                    onClick={() => handleNavigate(path, true, isLogout)}
+                  >
                     <ListItemText primary={title} />
                   </ListItemButton>
                 </ListItem>

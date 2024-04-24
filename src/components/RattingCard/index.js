@@ -1,16 +1,9 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
 import Rating from "@mui/material/Rating";
 
 import { ImageContainer, RatingContainer, Title } from "./component";
 
-const Card = ({ ratting, image, title }) => {
-  const [rating, setRating] = useState(ratting);
-
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
-
+const Card = ({ ratting, image, title, hanldeToUpdateRatting }) => {
   return (
     <Box>
       <Box>
@@ -19,9 +12,9 @@ const Card = ({ ratting, image, title }) => {
       <RatingContainer>
         <Rating
           onChange={(event, newValue) => {
-            handleRating(newValue);
+            hanldeToUpdateRatting(newValue);
           }}
-          value={rating}
+          value={ratting}
           precision={0.5}
           size="large"
           sx={{

@@ -7,9 +7,9 @@ import {
   Title,
 } from "./component";
 
-const ReceiptCard = ({ title, image }) => {
+const ReceiptCard = ({ title, image, handleToClickItem }) => {
   return (
-    <ReceiptCardContainer>
+    <ReceiptCardContainer onClick={handleToClickItem}>
       <Box sx={{ textAlign: "center" }}>
         <ImageContainer alt={title} src={image} />
       </Box>

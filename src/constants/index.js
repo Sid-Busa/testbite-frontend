@@ -16,13 +16,19 @@ export const navItems = (isValidUser) => [
           isButton: false,
           path: "/contact-us",
         },
+        {
+          title: "Logout",
+          isButton: true,
+          isLogout: true,
+        },
       ]
-    : []),
-  {
-    title: "Login/Register",
-    isButton: true,
-    path: "/sign-in",
-  },
+    : [
+        {
+          title: "Login/Register",
+          isButton: true,
+          path: "/sign-in",
+        },
+      ]),
 ];
 
 export const footerItems = (isValidUser) => [

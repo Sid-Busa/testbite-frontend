@@ -20,7 +20,9 @@ const FoodItem = () => {
 
   return (
     <FoodItemContainer>
-      <ImageContainer src={state.image} />
+      <ImageContainer
+        src={`${process.env.REACT_APP_BASE_URL}assets/${state.image}`}
+      />
       <Title> {state.name} </Title>
 
       <RecipesInfo>

@@ -17,7 +17,7 @@ const Recipes = ({ latestData, freshData, hanldeToMoveItemDetail }) => {
           <LatestRecipesCard
             key={item._id}
             title={item.name}
-            image={item.image}
+            image={`${process.env.REACT_APP_BASE_URL}assets/${item.image}`}
             description={item.description}
             creatorName={item.creator}
             handleToClickItem={() => handleToClickItem(item)}
@@ -37,7 +37,7 @@ const Recipes = ({ latestData, freshData, hanldeToMoveItemDetail }) => {
               width={"100%"}
             >
               <FastRecipesCard
-                image={freshDataItem.image}
+                image={`${process.env.REACT_APP_BASE_URL}assets/${freshDataItem.image}`}
                 title={freshDataItem.name}
                 handleToClickItem={() => handleToClickItem(freshDataItem)}
               />
